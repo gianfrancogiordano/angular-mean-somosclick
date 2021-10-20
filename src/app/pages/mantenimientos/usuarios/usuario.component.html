@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-lg-8">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Registro de Usuarios</h4>
+        <h6 class="card-subtitle">Formulario de registro de usuarios y trabajadores</h6>
+        
+        <form class="form p-t-20"
+              [formGroup]="formUsuario"
+              (ngSubmit)="nuevoUsuario()">
+
+          <div class="form-group" [ngClass]="{'has-danger': campoNoValido('nombre')}">
+            <label [ngClass]="{'text-danger': campoNoValido('nombre')}" for="exampleInputuname">Nombre</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-user"></i></div>
+
+              <input  type="text"
+                      class="form-control"
+                      id="nombre"
+                      [ngClass]="{'form-control-danger': campoNoValido('nombre')}"
+                      placeholder="Nombre"
+                      formControlName="nombre">
+            </div>
+            <div *ngIf="campoNoValido('nombre')" class="form-control-feedback text-danger">El nombre es requerido</div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-danger': campoNoValido('user')}">
+            <label [ngClass]="{'text-danger': campoNoValido('user')}" for="exampleInputEmail1">Usuario</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-user"></i></div>
+
+              <input  type="text"
+                      class="form-control"
+                      id="user"
+                      [ngClass]="{'form-control-danger': campoNoValido('user')}"
+                      placeholder="Usuario"
+                      formControlName="user">
+            </div>
+            <div *ngIf="campoNoValido('user')" class="form-control-feedback text-danger">El usuario es requerido</div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-danger': campoNoValido('password')}">
+            <label [ngClass]="{'text-danger': campoNoValido('password')}" for="pwd1">Password</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-lock"></i></div>
+
+              <input  type="password"
+                      class="form-control"
+                      id="password"
+                      [ngClass]="{'form-control-danger': campoNoValido('password')}"
+                      placeholder="Ingrese contraseña"
+                      formControlName="password">
+
+            </div>
+            <div *ngIf="campoNoValido('password')" class="form-control-feedback text-danger">La contraseña es requerida</div>
+          </div>
+          
+          <div class="form-group" [ngClass]="{'has-danger': campoNoValido('repassword')}">
+            <label [ngClass]="{'text-danger': campoNoValido('repassword')}" for="pwd2">Confirmar Clave</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-lock"></i></div>
+
+              <input  type="password"
+                      class="form-control"
+                      id="repassword"
+                      [ngClass]="{'form-control-danger': campoNoValido('repassword')}"
+                      placeholder="Confirme contraseña"
+                      formControlName="repassword">
+
+            </div>
+            <div *ngIf="campoNoValido('repassword')" class="form-control-feedback text-danger">Las contraseñas deben ser iguales</div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-danger': campoNoValido('email')}">
+            <label [ngClass]="{'text-danger': campoNoValido('email')}" for="pwd2">E-mail</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-email"></i></div>
+          
+              <input type="email" class="form-control" id="email"
+                [ngClass]="{'form-control-danger': campoNoValido('email')}" placeholder="E-mail"
+                formControlName="email">
+          
+            </div>
+            <div *ngIf="campoNoValido('email')" class="form-control-feedback text-danger">El E-mail es requerido</div>
+
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-danger': campoNoValido('role')}">
+            <label [ngClass]="{'text-danger': campoNoValido('role')}" for="pwd2">Role</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-shield"></i></div>
+              <select id="role" formControlName="role" class="form-control">
+                <option *ngFor="let role of roles" value="{{ role._id }}">{{ role.descripcion }}</option>
+              </select>
+            </div>
+            <div *ngIf="campoNoValido('role')" class="form-control-feedback text-danger">El role es requerido</div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-danger': campoNoValido('activo')}">
+            <label [ngClass]="{'text-danger': campoNoValido('activo')}" for="pwd2">activo</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-shield"></i></div>
+              <select id="activo" formControlName="activo" class="form-control">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+              </select>
+            </div>
+            <div *ngIf="campoNoValido('activo')" class="form-control-feedback text-danger">El activo es requerido</div>
+          </div>
+
+          <button *ngIf="!submitBtn" 
+                  type="submit" 
+                  class="btn btn-info waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
+          
+          <button *ngIf="submitBtn" 
+                  class="btn btn-info waves-effect waves-light m-r-10" 
+                  disabled><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Guardar</button>
+
+          <a routerLink="/dashboard/usuarios" class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>

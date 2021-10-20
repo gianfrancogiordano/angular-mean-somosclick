@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+.pointer {
+    cursor: pointer;
+}
+.w80 {
+    width: 80px;
+}
+.w100 {
+    width: 100px;
+}
+.w140 {
+    width: 140px;
+}
+.w150 {
+    width: 150px;
+}
+.w200 {
+    width: 200px;
+}
+.w215 {
+    width: 215px;
+}
+.mw150 {
+    min-width: 150px;
+}
+#map {
+    overflow:hidden;
+    padding-bottom:50%;
+    position:relative;
+    border-radius: 10px;
+    height:0;
+    left:0;
+    top:0;
+    height: 250px;
+    width:100%;
+}
+.img-perfil {
+  height: 25vh;
+}
+
+.card-success {
+    background-color: #c3e6cb;
+}
+.chart-container {
+    display: grid;
+    height: 30vh;
+
+}

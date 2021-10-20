@@ -1,0 +1,75 @@
+<div class="row animated fadeIn fast">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <div class="row">
+        
+          <div class="col-12 col-md-6">
+            <h4 class="card-title">Rol</h4>
+            <h6 class="card-subtitle">Editar permisos de los usuarios del sistema</h6>
+          </div>
+
+        </div>
+
+        <div class="table-responsive">
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <input type="text" [(ngModel)]="role.descripcion" value="{{ role.descripcion }}" class="form-control" placeholder="Escribir nombre del rol">
+              </div>
+            </div>
+          </div>
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Modulo</th>
+                <th>Visualizar</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let modulo of role.modulos">
+          
+                <td>{{ modulo.modulo }}</td>
+                <td class="w80">
+                  <select [(ngModel)]="modulo.visualizar" class="form-control w80">
+                    <option value="false">No</option>
+                    <option value="true">Si</option>
+                  </select>
+                </td>
+                <td class="w80">
+                  <select [(ngModel)]="modulo.editar" class="form-control w80">
+                    <option value="false">No</option>
+                    <option value="true">Si</option>
+                  </select>
+                </td>
+                <td class="w80">
+                  <select [(ngModel)]="modulo.eliminar" class="form-control w80">
+                    <option value="false">No</option>
+                    <option value="true">Si</option>
+                  </select>
+                </td>
+          
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+          <div class="row">
+            <div class="col-12 text-right">
+              <button (click)="actualizarRole()" type="button" class="btn btn-info m-1">Guardar</button>
+              <a [routerLink]="[ '/dashboard/roles' ]" class="btn btn-inverse m-1">Volver</a>
+            </div>
+          </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<div class="row animated fadeIn fast">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <div class="row">
+
+          <div class="col-12 col-md-6">
+            <h4 class="card-title">Roles del sistema</h4>
+            <h6 class="card-subtitle">Roles y permisos para los usuarios del sistema</h6>
+          </div>
+          <div class="col-12 col-md-6 text-right">
+            <a [routerLink]="[ '/dashboard/role', 'nuevo' ]" class="btn btn-info"><i class="fa fa-users"></i> Nuevo
+              Role</a>
+          </div>
+        </div>
+
+        <div>
+
+          <div class="row pb-2">
+            <div class="col-4 col-md-2">
+
+              <div class="form-group">
+                <label for="">Mostrando</label>
+                <select #selectMostrar [(ngModel)]="porPagina" (change)="mostrar( selectMostrar )"
+                  class="form-control w100">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                  <option value="75">75</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="col-12 col-md-10">
+
+              <div class="form-group">
+                <label for="">Buscar roles</label>
+
+                <input #txtbuscar (keyup)="buscarRole( txtbuscar.value )" type="text" class="form-control">
+
+              </div>
+
+            </div>
+          </div>
+
+          <div *ngIf="cargando" class="row animated fadeIn fast">
+            <div class="col-12">
+              <div class="alert alert-info text-center">
+                <h4 class="alert-heading">Cargando</h4>
+                <i class="fa fa-spin fa-refresh fa-2x" aria-hidden="true"></i>
+                <p class="mb-0">Por favor espere</p>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="!cargando" class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Descripción del rol</th>
+                  <th class="text-nowrap w100">--</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let role of tableData.data">
+
+                    <td>{{ role.descripcion }}</td>
+                    <td class="text-nowrap text-center">
+                      <a (click)="actualizarRole( role )" data-toggle="tooltip" data-original-title="Editar"> <i
+                          class="fa fa-pencil text-inverse pointer m-r-10"></i> </a>
+                    </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row small">
+            <div class="col-12 col-md-6">
+              <div class="dataTables_info m-1" id="example23_info" role="status" aria-live="polite">
+                Mostrando {{ porPagina }} registros de un total de {{ tableData.conteo }} registros
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+
+              <nav>
+                <ul class="pagination justify-content-end">
+
+                  <li class="page-item" [ngClass]="{'disabled': tableData.pagActual === 1}">
+                    <a class="page-link pointer" (click)="getUsuarios(tableData.pagAnterior, porPagina)">Anterior</a>
+                  </li>
+
+                  <ng-container *ngFor="let pagina of tableData.paginas; let i=index">
+
+                    <li [ngClass]="{ 'active': tableData.pagActual === pagina }" class="page-item">
+                      <a class="page-link pointer" (click)="getUsuarios( pagina, porPagina )">{{ pagina }}</a>
+                    </li>
+
+                  </ng-container>
+
+                  <li class="page-item" [ngClass]="{'disabled': tableData.pagActual === tableData.ultimaPag}">
+                    <a class="page-link pointer"
+                      (click)="getUsuarios( tableData.pagSiguiente , porPagina)">Siguiente</a>
+                  </li>
+
+                </ul>
+              </nav>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
